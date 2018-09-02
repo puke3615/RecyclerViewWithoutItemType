@@ -1,0 +1,2 @@
+# RecyclerViewWithoutItemType
+RecyclerView彻底解耦
