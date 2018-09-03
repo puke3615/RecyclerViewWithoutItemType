@@ -30,7 +30,14 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.factories = factories;
         for (int i = 0; i < factories.size(); i++) {
             BaseViewHolder.Factory factory = factories.get(i);
-            type2ItemType.put(factory.getType(), i);
+            String type = factory.getType();
+            Integer itemType = type2ItemType.get(type);
+            if (itemType != null) {
+                String currentFactory = factory.getClass().getName();
+                String sameFactory = factories.get(itemType).getClass().getName();
+                throw new RuntimeException("Same type found: " + currentFactory + " and " + sameFactory);
+            }
+            type2ItemType.put(type, i);
         }
     }
 
